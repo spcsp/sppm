@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0000CF33-0000-0000-0000-000000000000}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>SSPM</RootNamespace>
-    <AssemblyName>sspm</AssemblyName>
+    <RootNamespace>SPPM</RootNamespace>
+    <AssemblyName>sppm</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClearScript.Core, Version=7.1.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="ClearScript.Core, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\StrokesPlus.net\ClearScript.Core.dll</HintPath>
       <Private>False</Private>
@@ -42,9 +42,19 @@
       <HintPath>C:\Program Files\StrokesPlus.net\ClearScript.V8.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\StrokesPlus.net\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="StrokesPlus.net">
+      <HintPath>..\..\..\..\..\..\Program Files\StrokesPlus.net\StrokesPlus.net.exe</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\package.cs" />
     <Compile Include="src\sppm.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,3 +4,8 @@
 obj/
 node_modules/
 System Volume Information/
+
+# ignore everything except the plugin
+bin/Release/*
+!bin/Release/sppm.dll
+!bin/Release/sppm.pdb

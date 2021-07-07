@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sppm", "sppm.csproj", "{0000CF33-0000-0000-0000-000000000000}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sppm-tests", "..\sppm-tests\sppm-tests.csproj", "{E0702065-4972-46BE-9C7F-826C47D1FABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sppm-demo", "..\sppm-demo\sppm-demo.csproj", "{FDCF12E0-B5BF-4A49-8DBC-951D903F0379}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{0000CF33-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0000CF33-0000-0000-0000-000000000000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0000CF33-0000-0000-0000-000000000000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0702065-4972-46BE-9C7F-826C47D1FABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0702065-4972-46BE-9C7F-826C47D1FABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0702065-4972-46BE-9C7F-826C47D1FABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0702065-4972-46BE-9C7F-826C47D1FABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDCF12E0-B5BF-4A49-8DBC-951D903F0379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDCF12E0-B5BF-4A49-8DBC-951D903F0379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDCF12E0-B5BF-4A49-8DBC-951D903F0379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDCF12E0-B5BF-4A49-8DBC-951D903F0379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
