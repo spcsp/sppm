@@ -26,11 +26,11 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore sppm.sln
       - name: Build with dotnet
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build sppm.sln --configuration Release --no-restore
       - name: Test with dotnet
-        run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test sppm.sln --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v2
         with:
