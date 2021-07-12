@@ -1,4 +1,4 @@
-name: "Build Plugin"
+name: "Build & Test Plugin"
 
 on: [push]
 
@@ -6,11 +6,15 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout Source
         uses: actions/checkout@v2
+      - name: Setup Dotnet 4.8
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '4.8'
       - name: Install dependencies
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
-#      - name: Test
-#        run: dotnet test --no-restore --verbosity normal
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
