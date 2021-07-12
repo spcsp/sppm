@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sppm-plugin", "plugin\sppm-plugin.csproj", "{0000CF33-0000-0000-0000-000000000000}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sppm-tests", "tests\sppm-tests.csproj", "{76857088-5612-4676-81F2-CD31AFCC31C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sppm-tests", "tests\sppm-tests.csproj", "{76857088-5612-4676-81F2-CD31AFCC31C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +13,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0000CF33-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0000CF33-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0000CF33-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0000CF33-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{0000CF33-0000-0000-0000-000000000000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0000CF33-0000-0000-0000-000000000000}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76857088-5612-4676-81F2-CD31AFCC31C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

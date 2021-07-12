@@ -12,14 +12,4 @@ jobs:
       - name: Build with dotnet
         run: dotnet build sppm.sln --configuration Release --no-restore
       - name: Test with dotnet
-        run: dotnet test
-  test:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: dotnet restore sppm.sln
-      - name: Build with dotnet
-        run: dotnet build sppm.sln --configuration Release --no-restore
-      - name: Test with dotnet
-        run: dotnet test
+        run: dotnet test sppm.sln --configuration Release --no-restore
