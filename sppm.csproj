@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="packages\NUnit.3.13.2\build\NUnit.props" Condition="Exists('packages\NUnit.3.13.2\build\NUnit.props')" />
+  <Import Project="packages\Microsoft.ClearScript.V8.Native.win-x86.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x86.props" Condition="Exists('packages\Microsoft.ClearScript.V8.Native.win-x86.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x86.props')" />
+  <Import Project="packages\Microsoft.ClearScript.V8.Native.win-x64.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x64.props" Condition="Exists('packages\Microsoft.ClearScript.V8.Native.win-x64.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x64.props')" />
+  <Import Project="packages\Microsoft.ClearScript.V8.ICUData.7.1.4\build\Microsoft.ClearScript.V8.ICUData.props" Condition="Exists('packages\Microsoft.ClearScript.V8.ICUData.7.1.4\build\Microsoft.ClearScript.V8.ICUData.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,19 +38,23 @@
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClearScript.Core, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\StrokesPlus.net\ClearScript.Core.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ClearScript.Core, Version=7.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ClearScript.Core.7.1.4\lib\net471\ClearScript.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ClearScript.V8">
-      <HintPath>C:\Program Files\StrokesPlus.net\ClearScript.V8.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ClearScript.V8, Version=7.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ClearScript.V8.7.1.4\lib\net471\ClearScript.V8.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\StrokesPlus.net\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ClearScript.Windows, Version=7.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ClearScript.Windows.7.1.4\lib\net45\ClearScript.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ClearScript.Windows.Core, Version=7.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ClearScript.Windows.Core.7.1.4\lib\net45\ClearScript.Windows.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="StrokesPlus.net">
       <HintPath>C:\Program Files\StrokesPlus.net\StrokesPlus.net.exe</HintPath>
@@ -58,11 +67,19 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="demo\DemoProgram.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="src\npm.cs" />
     <Compile Include="src\paths.cs" />
     <Compile Include="src\sppm.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="test\SppmTest.cs" />
+    <Compile Include="test\EngineTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -74,5 +91,15 @@
     <!-- bin -->
     <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
     <!-- obj -->
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.ClearScript.V8.ICUData.7.1.4\build\Microsoft.ClearScript.V8.ICUData.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.ClearScript.V8.ICUData.7.1.4\build\Microsoft.ClearScript.V8.ICUData.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.ClearScript.V8.Native.win-x64.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x64.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.ClearScript.V8.Native.win-x64.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x64.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.ClearScript.V8.Native.win-x86.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x86.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.ClearScript.V8.Native.win-x86.7.1.4\build\Microsoft.ClearScript.V8.Native.win-x86.props'))" />
+    <Error Condition="!Exists('packages\NUnit.3.13.2\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit.3.13.2\build\NUnit.props'))" />
+    <Error Condition="!Exists('packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props'))" />
   </Target>
 </Project>
