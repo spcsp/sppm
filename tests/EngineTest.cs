@@ -1,8 +1,8 @@
-using NUnit.Framework;
 using Microsoft.ClearScript;
 using Microsoft.ClearScript.V8;
+using NUnit.Framework;
 
-namespace SPPM.Testing
+namespace sppm_tests
 {
     public class EngineTest
     {
@@ -35,7 +35,7 @@ namespace SPPM.Testing
         [Test]
         public void TestEvaluatingLodashModule()
         {
-            engine.Evaluate(Properties.Resources.lodash_min);
+            engine.Evaluate(SPPM.Properties.Resources.lodash_min);
             Assert.IsInstanceOf(typeof(ScriptObject), engine.Script._);
 
             engine.Evaluate(@"var one = _.min([1, 2, 3]);");
