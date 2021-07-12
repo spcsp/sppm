@@ -2,10 +2,12 @@
 .vscode/
 .cache/
 obj/
+packages/
 node_modules/
 System Volume Information/
 
 # ignore everything except the plugin
+bin/Debug
 bin/Release/*
 !bin/Release/sppm.dll
 !bin/Release/sppm.pdb
