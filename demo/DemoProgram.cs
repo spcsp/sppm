@@ -1,4 +1,4 @@
-﻿namespace SPPM
+﻿namespace SPPM.Demo
 {
     class DemoProgram
     {

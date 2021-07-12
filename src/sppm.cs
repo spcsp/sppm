@@ -6,8 +6,6 @@ using Microsoft.ClearScript;
 using Microsoft.ClearScript.JavaScript;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using static StrokesPlus.net.Engine.StrokesPlusClasses.Types.Internal;
-using static StrokesPlus.net.Engine.StrokesPlusClasses.UI;
 
 namespace SPPM
 {
@@ -77,7 +75,7 @@ namespace SPPM
 
         public static void Notify(string message, string title)
         {
-            DisplayTextInfo textInfo = new DisplayTextInfo();
+            var textInfo = new StrokesPlus.net.Engine.StrokesPlusClasses.Types.Internal.DisplayTextInfo();
 
             textInfo.UsePrimaryScreen = true;
             textInfo.Message = message;
@@ -93,7 +91,7 @@ namespace SPPM
             textInfo.ForeColor = "SteelBlue";
             textInfo.BackColor = "White";
 
-            TextOverlay.Show(textInfo);
+            StrokesPlus.net.Engine.StrokesPlusClasses.UI.TextOverlay.Show(textInfo);
         }
 
         public static void ShowError(object what)
