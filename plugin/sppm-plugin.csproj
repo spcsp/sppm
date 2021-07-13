@@ -12,8 +12,6 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,9 +44,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\npm.cs" />
-    <Compile Include="src\paths.cs" />
-    <Compile Include="src\sppm.cs" />
+    <Compile Include="src\Npm.cs" />
+    <Compile Include="src\Paths.cs" />
+    <Compile Include="src\Sppm.cs" />
     <Compile Include="src\DemoProgram.cs" />
   </ItemGroup>
   <ItemGroup>

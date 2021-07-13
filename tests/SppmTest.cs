@@ -1,9 +1,10 @@
+using Microsoft.ClearScript;
 using NUnit.Framework;
 using System.IO;
 
 namespace SPPM.Testing
 {
-    public class NpmTests : TestingEngine
+    public class NpmTests : TestBase
     {
         [Test]
         public void TestResolvingStrokesPlusNodeModulesPath()
@@ -22,6 +23,25 @@ namespace SPPM.Testing
             string resolved = Path.Combine(Paths.StrokesPlusModules(), "@spcsp", "osd-toast");
 
             Assert.AreEqual(resolved, abspath);
+        }
+
+        [Test]
+        public void TestResolvingModuleFromDisk()
+        {
+            string contents = SPPM.GetSource("@spcsp/osd-toast");
+
+            engine.Evaluate(contents);
+
+            AssertIsScriptObject(engine.Script.toast);
+        }
+
+        [Test]
+        public void TestResolvingAndEvaluatingWithEngine()
+        {
+            SPPM.Engine = engine;
+            SPPM.Load("@spcsp/osd-toast");
+
+            AssertIsScriptObject(SPPM.Engine.Script.toast);
         }
     }
 }

@@ -34,17 +34,12 @@ namespace SPPM
         {
             if (Exists(pkgId))
             {
-                Execute(@"" + GetSource(pkgId));
+                Engine.Evaluate(GetSource(pkgId));
             }
             else
             {
                 ShowError($"{pkgId} was not found.");
             }
-        }
-
-        public static void Load(string[] pkgIds)
-        {
-            Array.ForEach(pkgIds, Load);
         }
 
         public static string Resolve(string pkgId = "")

@@ -1,10 +1,9 @@
 using Microsoft.ClearScript;
-using Microsoft.ClearScript.V8;
 using NUnit.Framework;
 
 namespace SPPM.Testing
 {
-    public class ScriptTests : TestBase
+    public class EngineTest : TestBase
     {
         [Test]
         public void TestEvaluatingFunctionDeclaration()
