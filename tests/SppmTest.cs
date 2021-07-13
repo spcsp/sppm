@@ -1,4 +1,3 @@
-using Microsoft.ClearScript;
 using NUnit.Framework;
 using System.IO;
 
@@ -38,7 +37,6 @@ namespace SPPM.Testing
         [Test]
         public void TestResolvingAndEvaluatingWithEngine()
         {
-            SPPM.Engine = engine;
             SPPM.Load("@spcsp/osd-toast");
 
             AssertIsScriptObject(SPPM.Engine.Script.toast);

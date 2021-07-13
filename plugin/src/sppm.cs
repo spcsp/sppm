@@ -11,9 +11,11 @@ namespace SPPM
 {
     public static class SPPM
     {
-        public static ScriptEngine Engine { get; set; }
+        //public static ScriptEngine Engine { get; set; }
 
-        public static void StrokesPlusInitStaticPlugin(ScriptEngine engine) => Engine = engine;
+        public static ScriptEngine Engine => ScriptEngine.Current;
+
+        //public static void StrokesPlusInitStaticPlugin(ScriptEngine engine) => Engine = engine;
 
         public static void Install(string pkgId = "")
         {
@@ -68,6 +70,20 @@ namespace SPPM
             }
         }
 
+        public static void Evaluate(string pkgId)
+        {
+
+            var commonJsDocInfo = new DocumentInfo()
+            {
+                Category = ModuleCategory.CommonJS
+            };
+
+            Engine.DocumentSettings.SearchPath = Path.GetFullPath(Paths.NODE_MODULES);
+            Engine.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
+
+            Engine.Evaluate(commonJsDocInfo, GetSource(pkgId));
+        }
+
         public static void Notify(string message, string title)
         {
             var textInfo = new StrokesPlus.net.Engine.StrokesPlusClasses.Types.Internal.DisplayTextInfo();
@@ -93,30 +109,5 @@ namespace SPPM
         {
             MessageBox.Show(what.ToString(), "SPPM | Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        private static void Execute(string pkgId)
-        {
-
-            var commonJsDocInfo = new DocumentInfo() {
-                Category = ModuleCategory.CommonJS
-            };
-
-            Engine.DocumentSettings.SearchPath = Path.GetFullPath(Paths.NODE_MODULES);
-            Engine.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
-
-            Engine.Execute(commonJsDocInfo, GetSource(pkgId));
-        }
-        /*
-        private static void Execute(string script)
-        {
-            var docInfo = new DocumentInfo() {
-                Category = ModuleCategory.CommonJS
-            };
-            Engine.DocumentSettings.SearchPath = Paths.NODE_MODULES;
-            Engine.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
-
-            Engine.Execute(, script);
-        }
-        */
     }
 }
