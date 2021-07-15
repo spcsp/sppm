@@ -6,6 +6,14 @@ namespace SPPM.Testing
     public class NpmTests : TestBase
     {
         [Test]
+        public void TestResolvingRootPackageJson()
+        {
+            var pkg = SPPM.GetRootPackageJson();
+
+            Assert.IsInstanceOf(typeof(PackageJson), pkg);
+        }
+
+        [Test]
         public void TestResolvingStrokesPlusNodeModulesPath()
         {
             string modules = Paths.StrokesPlusModules();

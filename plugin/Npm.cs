@@ -18,13 +18,13 @@ namespace SPPM
             };
 
             var exitCode = 0;
-            
+
             using (var proc = Process.Start(info))
             {
                 proc.WaitForExit();
                 exitCode = proc.ExitCode;
             }
-           
+
             return exitCode;
         }
     }

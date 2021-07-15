@@ -24,7 +24,7 @@ namespace SPPM.Testing
         [Test]
         public void TestEvaluatingLodashModule()
         {
-            engine.Evaluate(Properties.Resources.lodash_min);
+            engine.Evaluate(Properties.Resources.lodash);
             Assert.IsInstanceOf(typeof(ScriptObject), engine.Script._);
 
             engine.Evaluate(@"var one = _.min([1, 2, 3]);");

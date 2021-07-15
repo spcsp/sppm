@@ -40,21 +40,10 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="src\Npm.cs" />
-    <Compile Include="src\Paths.cs" />
-    <Compile Include="src\Sppm.cs" />
-    <Compile Include="src\DemoProgram.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Compile Include="Npm.cs" />
+    <Compile Include="Paths.cs" />
+    <Compile Include="Sppm.cs" />
+    <Compile Include="PackageJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ClearScript">

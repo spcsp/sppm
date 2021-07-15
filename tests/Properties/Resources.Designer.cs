@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SPPM.Properties {
+namespace SPPM.Testing.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SPPM.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SPPM.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SPPM.Testing.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -71,9 +71,9 @@ namespace SPPM.Properties {
         /// */
         ///(function(){function n(n,t,r){switch(r.length){case 0:return n.call(t);case 1:return n.call(t,r[0]);case 2:return n.call(t,r[0],r[1]);case 3:return n.call(t,r[0],r[1],r [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string lodash_min {
+        public static string lodash {
             get {
-                return ResourceManager.GetString("lodash.min", resourceCulture);
+                return ResourceManager.GetString("lodash", resourceCulture);
             }
         }
     }

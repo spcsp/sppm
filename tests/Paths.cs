@@ -5,14 +5,20 @@ namespace SPPM.Testing
 {
     public static class Paths
     {
-        public static string StrokesPlusConfigRoot()
+        public static string StrokesPlusConfigRoot
         {
-            return Path.Combine("C:\\", "Users", Environment.UserName, "AppData", "Roaming", "StrokesPlus.net");
+            get
+            {
+                return Path.Combine("C:\\", "Users", Environment.UserName, "AppData", "Roaming", "StrokesPlus.net");
+            }
         }
 
-        public static string StrokesPlusModules()
+        public static string StrokesPlusModules
         {
-            return Path.Combine(StrokesPlusConfigRoot(), "node_modules");
+            get
+            {
+                return Path.Combine(StrokesPlusConfigRoot, "node_modules");
+            }
         }
     }
 }
