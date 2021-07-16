@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace SPPM
+namespace SPPM.NpmPackages
 {
+    public class ModuleDependencies : Dictionary<string, string> { }
+
     public class PackageJson
     {
         public string name { get; set; }
@@ -9,7 +11,7 @@ namespace SPPM
         public string version { get; set; }
         public string license { get; set; }
         public string description { get; set; }
-        public Dictionary<string, string> dependencies { get; set; }
-        public Dictionary<string, string> devDependencies { get; set; }
+        public ModuleDependencies dependencies { get; set; }
+        public ModuleDependencies devDependencies { get; set; }
     }
 }

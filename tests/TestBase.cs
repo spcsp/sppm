@@ -14,7 +14,12 @@ namespace SPPM.Testing
             engine = new V8ScriptEngine(V8ScriptEngineFlags.EnableDebugging, 1988);
         }
 
-        internal void AssertIsScriptObject(object obj)
+        public void AssertIsPackageJson(object obj)
+        { 
+            Assert.IsInstanceOf(typeof(PackageJson), obj);
+        }
+
+        public void AssertIsScriptObject(object obj)
         {
             Assert.IsInstanceOf(typeof(ScriptObject), obj);
         }
