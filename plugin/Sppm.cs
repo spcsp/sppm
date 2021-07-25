@@ -1,14 +1,11 @@
-﻿using Microsoft.ClearScript;
-using Microsoft.ClearScript.JavaScript;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using SPPM.NpmPackages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using Microsoft.ClearScript;
+using Newtonsoft.Json;
+using SPPM.NpmPackages;
 
 namespace SPPM
 {
@@ -20,76 +17,59 @@ namespace SPPM
 
         public static PackageJson RootPackageJson => ReadPackageJson(RootPackagePath);
 
-        public static ModuleDependencies Dependencies => ReadPackageJson(RootPackagePath).dependencies;
-
-        public static List<string> InstalledModules => Dependencies.Select(x => x.Key).ToList();
-
-        public static void StrokesPlusInitStaticPlugin() { }
-
-        public static void StrokesPlusEngineReload() { }
-
-        public static void Use(params string[] pkgIds) => Array.ForEach(pkgIds, Load);
-
-        public static void Autoload() => InstalledModules.ForEach(Load);
-
-        public static void Install(string pkgId = "")
+        public static void StrokesPlusInitStaticPlugin()
         {
-            NPM.Exec($"install {pkgId}");
+            //MessageBox.Show("Init Plugin", "");
         }
+
+        public static void StrokesPlusEngineReload()
+        {
+            //MessageBox.Show("Reloading Plugin ", "");
+        }
+
+        public static void Install(string pkgId = "") => NPM.Exec($"install {pkgId}");
+
+        public static void Load(string[] pkgIds) => Array.ForEach(pkgIds, Load);
 
         public static void Load(string pkgId)
         {
-            if (Exists(pkgId))
+            try
             {
-                Engine.Evaluate(GetModuleSource(pkgId));
-            }
-            else
+                if (Exists(pkgId))
+                {
+                    Engine.Evaluate(GetModuleSource(pkgId));
+                }
+                else
+                {
+                    Notify($"{pkgId} was not found.");
+                }
+            } catch (Exception err)
             {
-                Notify($"{pkgId} was not found.");
+                Notify(err.ToString());
             }
         }
-
-        public static string Resolve(string pkgId = "")
+        public static void LoadAll()
         {
-            return Path.GetFullPath(Path.Combine(Paths.NODE_MODULES, pkgId));
+            RootPackageJson.dependencies.Select(x => x.Key).ToList().ForEach(Load);
         }
 
-        public static string ResolveModulePackage(string pkgId)
-        {
-            return Path.Combine(Resolve(pkgId), "package.json");
-        }
+        public static bool Exists(string pkgId) => File.Exists(ResolveModulePackage(pkgId));
 
-        public static bool Exists(string pkgId)
-        {
-            return File.Exists(ResolveModulePackage(pkgId));
-        }
+        public static string Resolve(string pkgId = "") => Paths.FullJoin(Paths.NODE_MODULES, pkgId);
 
-        public static string GetModuleSource(string pkgId)
-        {
-            return File.ReadAllText(ResolveMain(pkgId));
-        }
+        public static string GetModuleSource(string pkgId) => File.ReadAllText(ResolveMain(pkgId));
 
-        public static string ResolveMain(string pkgId)
-        {
-            return Path.GetFullPath(Path.Combine(Resolve(pkgId), ReadModulePackage(pkgId).main));
-        }
+        public static string ResolveModulePackage(string pkgId) => Paths.FullJoin(Resolve(pkgId), "package.json");
 
-        public static PackageJson ReadModulePackage(string pkgId)
-        {
-            return ReadPackageJson(ResolveModulePackage(pkgId));
-        }
+        public static string ResolveMain(string pkgId) => Paths.FullJoin(Resolve(pkgId), ReadModulePackage(pkgId).main);
 
-        public static PackageJson ReadPackageJson(string path)
-        {
-            return ParsePackageJson(File.ReadAllText(path));
-        }
+        public static PackageJson ReadPackageJson(string path) => ParsePackageJson(File.ReadAllText(path));
 
-        public static PackageJson ParsePackageJson(string json)
-        {
-            return JsonConvert.DeserializeObject<PackageJson>(json);
-        }
+        public static PackageJson ReadModulePackage(string pkgId) => ReadPackageJson(ResolveModulePackage(pkgId));
 
-        internal static void Notify(string message)
+        public static PackageJson ParsePackageJson(string json) => JsonConvert.DeserializeObject<PackageJson>(json);
+
+        private static void Notify(string message)
         {
             var textInfo = new StrokesPlus.net.Engine.StrokesPlusClasses.Types.Internal.DisplayTextInfo()
             {
@@ -110,20 +90,5 @@ namespace SPPM
 
             StrokesPlus.net.Engine.StrokesPlusClasses.UI.TextOverlay.Show(textInfo);
         }
-        
-        /*
-        public static void Evaluate(string pkgId)
-        {
-            var commonJsDocInfo = new DocumentInfo()
-            {
-                Category = ModuleCategory.CommonJS
-            };
-
-            Engine.DocumentSettings.SearchPath = Path.GetFullPath(Paths.NODE_MODULES);
-            Engine.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
-
-            Engine.Evaluate(commonJsDocInfo, GetSource(pkgId));
-        }
-        */
     }
 }

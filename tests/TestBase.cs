@@ -16,7 +16,7 @@ namespace SPPM.Testing
 
         public void AssertIsPackageJson(object obj)
         { 
-            Assert.IsInstanceOf(typeof(PackageJson), obj);
+            Assert.IsInstanceOf(typeof(NpmPackages.PackageJson), obj);
         }
 
         public void AssertIsScriptObject(object obj)
